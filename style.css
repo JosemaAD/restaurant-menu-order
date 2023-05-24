@@ -1,3 +1,20 @@
 body {
     margin: 0;
+    background: hsla(31, 90%, 76%, 1);
+    background: linear-gradient(90deg, hsla(31, 90%, 76%, 1) 0%, hsla(302, 82%, 76%, 1) 100%);
+    background: -moz-linear-gradient(90deg, hsla(31, 90%, 76%, 1) 0%, hsla(302, 82%, 76%, 1) 100%);
+    background: -webkit-linear-gradient(90deg, hsla(31, 90%, 76%, 1) 0%, hsla(302, 82%, 76%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#F9C58D", endColorstr="#F492F0", GradientType=1 );    
 } 
+.selector-for-some-widget {
+    box-sizing: content-box;
+  } 
+main{
+    width: 100%;
+    max-width: 860px;
+    margin: 30px auto;
+    padding: 30px;
+    box-shadow: 0 0.125rem 3.375rem rgba(0,0,0,.5);
+    border-radius: 20px;
+    background: #fff;
+}
