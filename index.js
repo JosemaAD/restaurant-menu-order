@@ -1,10 +1,16 @@
 import { menuArray } from './data.js';
+import { v4 as uuidv4 } from 'https://jspm.dev/uuid';
+let cart = []
+
 const foodMenuList = document.getElementById('food-menu-list')
 const orderDetails = document.getElementById('order-details')
 
 document.addEventListener("click", function(e){
     if(e.target.dataset.add){
         handleAddToCartBtn(e.target.dataset.add)
+    }
+    else if(e.target.dataset.remove){
+        handleRemoveFromCartBtn(e.target.dataset.remove)
     }
 })
 
@@ -13,39 +19,49 @@ function handleAddToCartBtn(foodId){
         return food.uuid === foodId
     })[0]
 
-    const cart = []
-    cart.push(itemAdded)
-    handleCart(cart)
+    cart.push(itemAdded) 
+
+    renderCart(cart)
 }
 
-function handleCart(cart){
-    console.log(cart)
-    // if(cart.length > 0){
-    //     let cartHtml = ``
-    //         cart.forEach(function(item){
-    //             cartHtml += `
-    //                 <div class="row">
-    //                     <div class="col-md-3">
-    //                         ${item.name}
-    //                     </div>
-    //                     <div class="col-md-3">
-    //                     </div>
-    //                     <div class="col-md-6 text-end">
-    //                     ${item.price}
-    //                     </div>
-    //                 </div>
-    //             `
-    //         })
-    // renderCart(cartHtml)
-    // }
+function handleRemoveFromCartBtn(foodId){
 
+    const itemRemoved = cart.filter(function(food){
+        return food.uuid === foodId
+    })[0]
+
+    let indexOfFood = cart.indexOf(itemRemoved)
+    cart.splice(indexOfFood, 1)
+
+    renderCart(cart)
+}
+
+function cartItems(cart){
+    let cartHtml = ``
+    if(cart.length > 0){
+
+        cart.forEach(function(item,i = 0){
+            cartHtml += `
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-md-3">
+                        <h3>${item.name}</h3>
+                    </div>
+                    <div class="col-md-3">
+                    <i class="fa-solid fa-trash" data-remove="${item.uuid}"> Remove</i>
+                    </div>
+                    <div class="col-md-6 text-end">
+                    ${item.price}
+                    </div>
+                </div>
+            `
+        })
+    }
+    return cartHtml 
 }
 
 function getFeedHtml(){
     let htmlMenu = ``
-
-    menuArray.forEach(function(food){
-        
+    menuArray.forEach(function(food){   
         htmlMenu += `
         <div class="row align-items-center">
             <div class="col-md-3">
@@ -61,11 +77,8 @@ function getFeedHtml(){
             </div>
         </div>
         `
-
     })
-
     return htmlMenu
-
 }
 
 function renderMenu(){
@@ -73,7 +86,10 @@ function renderMenu(){
 }
 
 function renderCart(cart){
-    orderDetails.innerHTML = handleCart(cart)
+    if(cart){
+        orderDetails.innerHTML = cartItems(cart)
+    }
+    console.log(cart)
 }
 
 renderMenu()
