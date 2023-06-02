@@ -4,6 +4,10 @@ let cart = []
 
 const foodMenuList = document.getElementById('food-menu-list')
 const orderDetails = document.getElementById('order-details')
+const completeOrderBtn = document.getElementById('complete-order-btn')
+const checkoutForm = document.getElementById('checkout-form')
+const totalPrice = document.getElementById('total-price')
+const payOrderBtn = document.getElementById('pay-order-btn')
 
 document.addEventListener("click", function(e){
     if(e.target.dataset.add){
@@ -11,6 +15,20 @@ document.addEventListener("click", function(e){
     }
     else if(e.target.dataset.remove){
         handleRemoveFromCartBtn(e.target.dataset.remove)
+    }
+})
+
+completeOrderBtn.addEventListener('click', function(){
+    if(cart.length > 0){
+        checkoutForm.classList.remove('d-none')
+    }else{
+        console.log('Cart is empty!')
+    }
+})
+
+payOrderBtn.addEventListener('click', function(){
+    if(document.getElementById('name-checkout').value && document.getElementById('card-number-checkout').value && document.getElementById('card-cvv-checkout').value){
+        console.log('hey')
     }
 })
 
@@ -40,7 +58,7 @@ function cartItems(cart){
     let cartHtml = ``
     if(cart.length > 0){
 
-        cart.forEach(function(item,i = 0){
+        cart.forEach(function(item){
             cartHtml += `
                 <div class="row align-items-center justify-content-center">
                     <div class="col-md-3">
@@ -56,7 +74,26 @@ function cartItems(cart){
             `
         })
     }
-    return cartHtml 
+
+    return cartHtml
+}
+
+function cartTotal(cart){
+    let cartTotalHtml = ``
+    let cartTotalPrice = 0
+
+    cart.forEach(function(item){
+        cartTotalPrice += item.price
+    })
+
+    cartTotalHtml = `
+    <div class="row align-items-center">
+        <div class="col-md-6">Total Price: </div>
+        <div class="col-md-6">${cartTotalPrice}</div>
+    </div>
+    `
+
+    return cartTotalHtml
 }
 
 function getFeedHtml(){
@@ -88,8 +125,9 @@ function renderMenu(){
 function renderCart(cart){
     if(cart){
         orderDetails.innerHTML = cartItems(cart)
+        totalPrice.innerHTML = cartTotal(cart)
     }
-    console.log(cart)
+    
 }
 
 renderMenu()
