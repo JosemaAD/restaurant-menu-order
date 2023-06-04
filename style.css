@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;700&display=swap');
+
 body {
     margin: 0;
     background: hsla(31, 90%, 76%, 1);
@@ -5,18 +8,38 @@ body {
     background: -moz-linear-gradient(90deg, hsla(31, 90%, 76%, 1) 0%, hsla(302, 82%, 76%, 1) 100%);
     background: -webkit-linear-gradient(90deg, hsla(31, 90%, 76%, 1) 0%, hsla(302, 82%, 76%, 1) 100%);
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#F9C58D", endColorstr="#F492F0", GradientType=1 );    
+    font-family: 'Poppins', sans-serif;
 } 
 .selector-for-some-widget {
     box-sizing: content-box;
 } 
-main{
+main,header{
     width: 100%;
     max-width: 860px;
-    margin: 30px auto;
+    margin: 0px auto;
     padding: 30px;
-    box-shadow: 0 0.125rem 3.375rem rgba(0,0,0,.5);
-    border-radius: 20px;
+    /* box-shadow: 0 0.125rem 3.375rem rgba(0,0,0,.5); */
     background: #fff;
+    overflow: hidden;
+}
+.menu{
+    margin: 30px 0 ;
+}
+main{
+    margin-top: -15px;
+    border-radius: 0 0 20px 20px;
+}
+header{
+    border-radius: 20px 20px;
+    background: url('assets/img/background-header.png') center center no-repeat;
+    background-size: cover;
+    color:#fff;
+}
+.header-font{
+    padding: 20px;
+}
+h1,h2,h3{
+    font-weight: 900;
 }
 form{
     background-color: white;
@@ -26,10 +49,52 @@ form{
     bottom: 0;
     left: 0;
     right: 0;
-    box-shadow: 0px 0px 10px 5px #e2e2e2;
+    box-shadow: 0px 0px 10px 2px #191919;
     width: fit-content;
     height: fit-content;
     margin: auto auto;
-    border-radius: 10px;
 
+}
+.payment-form{
+    padding: 30px 15px;
+    width: 350px;
+    height: 350px;
+}
+.complete-btn{
+    width: 100%;
+    margin: 25px 0;
+    background-color: #16DB99 !important;
+    border-radius: 0;
+    padding: 10px 0;
+    border: none;
+    color:#fff
+}
+input[type=text]{
+    border-radius: 0;
+    margin:20px 0;
+    border: 1px solid #000;
+    padding: 10px;
+}
+.complete-btn:disabled{
+    color:#fff;
+    cursor:not-allowed;
+}
+.food-price{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #000000;
+}
+.add{
+    padding: 15px;
+    border: 1px solid #fff;
+    cursor: pointer;
+    border-radius: 100%;
+    background-color: #FD6C7B;
+    color:#fff;
+}
+.remove{
+    font-size: 12px;
+    color: #918c8c
 }

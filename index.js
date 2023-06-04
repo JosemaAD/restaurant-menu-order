@@ -7,6 +7,7 @@ const checkoutForm = document.getElementById('checkout-form')
 const totalPrice = document.getElementById('total-price')
 const payOrderBtn = document.getElementById('pay-order-btn')
 const cartSummary = document.getElementById('cart-summary')
+const thankYouMsg = document.getElementById('thank-you-msg')
 let cart = []
 
 // Event listener for add to cart and remove from cart
@@ -33,9 +34,9 @@ payOrderBtn.addEventListener('click', function(e){
         setTimeout(function(){
             cartSummary.classList.add('d-none')
             checkoutForm.classList.add('d-none')
-            cartSummary.textContent = `Thanks ${document.getElementById('name-checkout').value} Your order is on its way!w`
-            cartSummary.classList.toggle('d-none')
-        }, 2000);
+            thankYouMsg.textContent = `Thanks ${document.getElementById('name-checkout').value} Your order is on its way!`
+            thankYouMsg.classList.toggle('d-none')
+        }, 1000);
     }
 })
 
@@ -71,15 +72,15 @@ function cartItems(cart){
 
         cart.forEach(function(item){
             cartHtml += `
-                <div class="row align-items-center justify-content-center">
+                <div class="row align-items-center justify-content-center my-2">
                     <div class="col-md-3">
-                        <h3>${item.name}</h3>
+                        <h4 class="mb-0">${item.name}</h3>
                     </div>
                     <div class="col-md-3">
-                    <i class="fa-solid fa-trash" data-remove="${item.uuid}"> Remove</i>
+                    <i class="fa-solid fa-trash remove" data-remove="${item.uuid}"> Remove</i>
                     </div>
                     <div class="col-md-6 text-end">
-                    ${item.price}
+                    ${item.price}$
                     </div>
                 </div>
             `
@@ -100,8 +101,8 @@ function cartTotal(cart){
 
     cartTotalHtml = `
     <div class="row align-items-center">
-        <div class="col-md-6">Total Price: </div>
-        <div class="col-md-6">${cartTotalPrice}</div>
+        <div class="col-md-6"><h2>Total Price:</h2> </div>
+        <div class="col-md-6"><h4>${cartTotalPrice}$</h4></div>
     </div>
     `
 
@@ -113,17 +114,17 @@ function getFeedHtml(){
     let htmlMenu = ``
     menuArray.forEach(function(food){   
         htmlMenu += `
-        <div class="row align-items-center">
+        <div class="row align-items-center border-bottom my-4">
             <div class="col-md-3">
-                ${food.emoji}
+                <p class="text-center h1">${food.emoji}</p>
             </div>
             <div class="col-md-3">
                 <h3 class="food-name">${food.name}</h3>
                 <p class="food-ingredients">${food.ingredients}</p>
-                <p class="food-price">${food.price}</p>
+                <p class="food-price h3">${food.price}</p>
             </div>
             <div class="col-md-6 text-end">
-                <i class="fa-regular fa-plus" data-add="${food.uuid}"></i>
+                <i class="fa-regular fa-plus add" data-add="${food.uuid}"></i>
             </div>
         </div>
         `
