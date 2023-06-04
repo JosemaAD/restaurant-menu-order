@@ -14,24 +14,24 @@
                 <h2>The best burgers and pizzas in town</h2>
             </header>
 
-            <div class="container my-2" id="food-menu-list">
-  
-            </div>
+            <div class="container my-2" id="food-menu-list"></div>
+
             <div class="container my-2" id="cart-summary">
                 <h2>Your order</h2>
-                <div class="order-details" id="order-details">
-                </div>
-                <div class="order-total" id="total-price">
-
-                </div>
-                <button id="complete-order-btn">Complete order</button>
+                <div class="order-details" id="order-details"></div>
+                <div class="order-total" id="total-price"></div>
+                <button id="complete-order-btn" disabled>Complete order</button>
             </div>
+
+            <div class="container my-2 d-none" id="thank-you-msg"></div>
+
             <form id="checkout-form" class="d-none">
                 <input type="text" class="form-control" id="name-checkout" placeholder="Enter your name" required>
                 <input type="text" class="form-control" id="card-number-checkout" placeholder="Enter card number" required>
                 <input type="text" class="form-control" id="card-cvv-checkout" placeholder="Enter CVV" required>
                 <button id="pay-order-btn">Pay</button>
             </form>
+            
         </main>     
 	    <script src="index.js" type="module"></script>
     </body>
